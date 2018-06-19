@@ -12,15 +12,22 @@ $("body").bind("DOMNodeInserted", function () {
         console.log("Init");
 
         $(this).addClass("updated");
-        // $(this).css("background-color", "blue");
 
-        var percentage = Math.floor(Math.random() * (100 - 1 + 1) + 1);
-        var color = (percentage < 50) ? "red" : "dodgerblue";
+        var percentage = Math.floor(Math.random() * (99 - 1 + 1) + 1);
 
-        percentage = percentage < 50 ? percentage + 50 : percentage;
+        var color = "dodgerblue";
+        var title = "Bying";
+        if (percentage < 50) {
+            color = "red";
+            percentage += 50;
+            title = "Selling";
+        }
 
         // TODO do it better with small chart or image ?
-        $(this).before("<span style='color: " + color + "'>" + percentage + "% </span>");
+        $(this).before("<span "
+            + "title='" + title + "' "
+            +"style='color: " + color + "'>"
+            + percentage + "%</span> ");
     });
 });
 
