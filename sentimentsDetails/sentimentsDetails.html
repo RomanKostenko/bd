@@ -1,3 +1,6 @@
+<!-- This html will be added only once to the body by logic in contentScript.js -->
+
+<!-- Template is used for adding every Sentiments Details -->
 <script id="sentimentsDetailsTemplate" type="text/x-handlebars-template">
     <style>
         .longX {
@@ -7,23 +10,70 @@
         .shortX {
             color: red;
         }
+
+        .putX {
+            color: #8b0000;
+        }
+
+        .callX {
+            color: #006400;
+        }
+
+        .chart {
+            margin: 0 auto;
+            width: 240px;
+            height: 220px;
+        }
+
+        .sentiments-table {
+            position: relative;
+            top: -105px;
+            align-content: center;
+            background: none;
+        }
+        .sentiments-table tbody tr {
+            background: none !important;
+        }
+        .sentiments-table tbody td {
+            border: none;
+        }
+        .sentiments-table {
+            padding-left: 30px;
+        }
+        .sentiments-table span {
+            font-weight: bold;
+        }
+        .sentiments-table tr td:first-child {
+            text-align: right;
+            padding-right: 20px;
+        }
     </style>
 
     <section class='quoteSection detail'>
         <header class='quoteHeader'><span>Sentiments</span></header>
         <content class='quoteContent'>
-            <table class='fullquoteTable' border='0' cellpadding='0' cellspacing='0'>
+            <div id="{{id}}" class="chart"></div>
+            <table class='sentiments-table' border='0' cellpadding='0' cellspacing='0'>
                 <tbody>
                 <tr>
-                    <td style='color: dodgerblue'>Buying</td>
-                    <td><span style='color: dodgerblue'>{{longValue}}%</span></td>
+                    <td class="{{longShortStyle}}"><span>{{longShortValue}}%</span></td>
+                    <td class="{{longShortStyle}}" >{{longShortDescription}}</td>
                 </tr>
                 <tr>
-                    <td style='color: red'>Selling</td>
-                    <td><span style='color: red'>{{shortValue}}%</span></td>
+                    <td class="{{putCallStyle}}"><span>{{putCallValue}}%</span></td>
+                    <td class="{{putCallStyle}}">{{putCallDescription}}</td>
+                </tr>
+                <tr>
+                    <td><span>{{followers}}</span></td>
+                    <td>new people following</td>
+                </tr>
+                <tr>
+                    <td><span>{{volume}}M</span></td>
+                    <td>intraday volume</td>
                 </tr>
                 </tbody>
             </table>
         </content>
     </section>
 </script>
+
