@@ -1,0 +1,29 @@
+<script id="sentimentsDetailsTemplate" type="text/x-handlebars-template">
+    <style>
+        .longX {
+            color: dodgerblue;
+        }
+
+        .shortX {
+            color: red;
+        }
+    </style>
+
+    <section class='quoteSection detail'>
+        <header class='quoteHeader'><span>Sentiments</span></header>
+        <content class='quoteContent'>
+            <table class='fullquoteTable' border='0' cellpadding='0' cellspacing='0'>
+                <tbody>
+                <tr>
+                    <td style='color: dodgerblue'>Buying</td>
+                    <td><span style='color: dodgerblue'>{{longValue}}%</span></td>
+                </tr>
+                <tr>
+                    <td style='color: red'>Selling</td>
+                    <td><span style='color: red'>{{shortValue}}%</span></td>
+                </tr>
+                </tbody>
+            </table>
+        </content>
+    </section>
+</script>

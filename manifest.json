@@ -1,35 +1,51 @@
 {
   "name": "Social Trading",
   "version": "1.0",
-  "permissions": ["activeTab", "declarativeContent", "tabs","<all_urls>"],
+  "permissions": [
+    "activeTab",
+    "declarativeContent",
+    "tabs",
+    "<all_urls>"
+  ],
   "background": {
-    "scripts": ["background.js"],
+    "scripts": [
+      "extension/background.js"
+    ],
     "persistent": false
   },
-  "web_accessible_resources": ["socialTrend.html"],
-  "page_action": {
-    "default_popup": "popup.html",
-    "default_icon": {
-      "16": "images/get_started16.png",
-      "32": "images/get_started32.png",
-      "48": "images/get_started48.png",
-      "128": "images/get_started128.png"
-    }
-  },
+  "web_accessible_resources": [
+    "*/**"
+  ],
   "content_scripts": [
     {
       "matches": [
         "http://*/*",
         "https://*/*"
       ],
-      "js": ["jquery-3.3.1.js", "contentScript.js"]
+      "js": [
+        "libs/jquery-3.3.1.js",
+        "libs/highcharts.js",
+        "libs/highcharts-more.js",
+        "libs/solid-gauge.js",
+        "libs/handlebars-v4.0.11.js",
+        "contentScript.js"
+      ]
     }
   ],
+  "page_action": {
+    "default_popup": "extension/extension.html",
+    "default_icon": {
+      "16": "extension/images/get_started16.png",
+      "32": "extension/images/get_started32.png",
+      "48": "extension/images/get_started48.png",
+      "128": "extension/images/get_started128.png"
+    }
+  },
   "icons": {
-    "16": "images/get_started16.png",
-    "32": "images/get_started32.png",
-    "48": "images/get_started48.png",
-    "128": "images/get_started128.png"
+    "16": "extension/images/get_started16.png",
+    "32": "extension/images/get_started32.png",
+    "48": "extension/images/get_started48.png",
+    "128": "extension/images/get_started128.png"
   },
   "manifest_version": 2
 }
