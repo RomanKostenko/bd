@@ -117,33 +117,6 @@ $("body").bind("DOMNodeInserted", function () {
     });
 });
 
-function waitTradingWidget(selector, time) {
-    console.log("Wait for loading Trading Widget");
-    if ($(selector).length) {
-        console.log("INIT Trend Trading Widget");
-
-        // Init new widget on the screen
-        $('.rightColumn:not(.updated)').prepend("<div id='social-trend-container'></div>");
-        $('.rightColumn').addClass("updated");
-
-        $('#social-trend-container').load(chrome.extension.getURL('trendTradingWidget/trendTradingWidget.html'));
-
-        return;
-    }
-    else {
-        setTimeout(function () {
-            waitTradingWidget(selector, time);
-        }, time);
-    }
-}
-
-if (!$(".rightColumn").length) {
-    waitTradingWidget(".rightColumn:not(.updated)", 1000);
-} else {
-    $('#social-trend-container').load(chrome.extension.getURL('trendTradingWidget/trendTradingWidget.html'));
-}
-
-
 //// Chart
 if (!Highcharts.theme) {
     Highcharts.setOptions();
@@ -267,6 +240,81 @@ function placeChart(data) {
         ]
     });
 }
+
+
+//
+//
+// Trend widget
+//
+//
+
+
+function waitTradingWidget(selector, time) {
+    console.log("Wait for loading Trading Widget");
+    if ($(selector).length) {
+        console.log("INIT Trend Trading Widget");
+
+        // Init new widget on the screen
+        $('.rightColumn:not(.updated)').prepend("<div id='social-trend-container'></div>");
+        $('.rightColumn').addClass("updated");
+
+        $('#social-trend-container').load(chrome.extension.getURL('trendTradingWidget/trendTradingWidget.html'));
+
+
+        $('head').append('<link rel="stylesheet" href="'
+            + chrome.extension.getURL('libs/owl.carousel.min.css')
+            + '">');
+
+        $('head').append('<link rel="stylesheet" href="'
+            + chrome.extension.getURL('libs/owl.theme.default.min.css')
+            + '">');
+
+
+        $(document).ready(function() {
+            $('.owl-carousel').owlCarousel({
+                loop: true,
+                margin: 10,
+                responsiveClass: true,
+                responsive: {
+                    0: {
+                        items: 1,
+                        nav: true
+                    },
+                    600: {
+                        items: 3,
+                        nav: false
+                    },
+                    1000: {
+                        items: 5,
+                        nav: true,
+                        loop: false,
+                        margin: 20
+                    }
+                }
+            })
+        });
+                return;
+    }
+    else {
+        setTimeout(function () {
+            waitTradingWidget(selector, time);
+        }, time);
+    }
+}
+
+if (!$(".rightColumn").length) {
+    waitTradingWidget(".rightColumn:not(.updated)", 1000);
+} else {
+    $('#social-trend-container').load(chrome.extension.getURL('trendTradingWidget/trendTradingWidget.html'));
+}
+
+
+// INIT carousel
+
+
+
+
+
 
 //// UTILS
 

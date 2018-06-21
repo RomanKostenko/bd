@@ -28,6 +28,7 @@
         "libs/highcharts-more.js",
         "libs/solid-gauge.js",
         "libs/handlebars-v4.0.11.js",
+        "libs/owl.carousel.js",
         "contentScript.js"
       ]
     }
